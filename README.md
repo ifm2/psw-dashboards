@@ -1,21 +1,34 @@
-# Build Better workshop dashboard
+# Professional Skills Workshops: PSW 1 Dashboard
 
-A static, browser based dashboard for timing and reviewing three LEGO build rounds in a professional skills workshop.
+A lightweight facilitator dashboard for timing LEGO team builds in undergraduate engineering workshops. It supports three builds per workshop session, individual and group timers, results, progress comparisons, CSV export, and four separately saved workshop sessions.
 
-## Run locally
+## Start the dashboard
 
-Open `index.html` in a browser, or serve this directory with any static web server. The app has no package dependencies or build step. For GitHub Pages, publish the repository root from the `main` branch.
+Open `index.html` in a modern browser. For a hosted copy, publish the repository root with GitHub Pages. The dashboard has no build step, package installation, or server-side database.
 
-## Workshop workflow
+Use the gear button to set up the selected session:
 
-1. Open the gear menu, set an admin password (at least 6 characters), add a session name, and enter one team per line.
-2. Select a team, start the team timers individually or together with **START ALL**. Use **STOP** to pause one timer, edit its time, then **RESUME** or submit. **PAUSE ALL** pauses every running timer. Use manual time entry if a result needs recording without the stopwatch.
-3. Results are revealed automatically once all teams submit, or use **STOP BUILD** to lock the round and reveal submitted results.
-4. Select Builds 2 and 3 in the progress bar and repeat. The chart shows each team's time trend; the summary reports the fastest recorded build and the greatest Build 1 to Build 3 improvement.
-5. Export CSV from admin controls, then reset the dashboard before the next workshop session.
+1. Set the session name if you want a custom label.
+2. Set **Number of teams** from 1 to 16. This controls the visible team timers. It works in Session 1 as well as Sessions 2–4. Changing the count keeps saved times and hidden teams; it does not delete them.
+3. Optionally edit team names, one per line. The default roster is Team 1 through Team 16, with matching logos in `assets/teams/`.
 
-## Data and deployment notes
+The session selector stores each session separately. Team 4 in Session 1 and Team 4 in Session 2 are treated as different workshop teams. Whole Cohort Leaders compares completed teams across sessions and labels each result with its session.
 
-Session data and the admin password are stored in the current browser's `localStorage`. This is a single-browser facilitator tool: data is not shared with participants' separate devices, synced to a server, or protected against someone with browser developer tools. The dashboard is intended for staff on the facilitator device; it has no password prompt. For the requested team selection from each team's own device with a shared live leaderboard, a backend service and real administrator authentication are needed. Keep this browser open during the session and export before clearing storage.
+## Run a workshop
 
-The supplied logos are stored in `assets/teams/` and displayed for the matching `Team 1` through `Team 16` names. The default roster includes all 16 teams. The archive contained both `Team 8.png` and `Team 8 V2.png`; the dashboard uses the explicitly versioned `Team 8 V2.png`. To use a logo for a renamed team, preserve the matching `assets/teams/team-N.png` filename or update the image mapping in `app.js`.
+1. Select the build with the Build One, Build Two, and Build Three controls.
+2. Start teams individually or choose **Start All**. Stop a team to record its time, or pause and resume its timer. **Pause All** pauses active timers; **Resume All** continues them.
+3. After a team submits, use **Continue** to unsubmit its time and restart its timer from that saved time. Use **Correct time** to edit the submitted result.
+4. Choose **Submit All** to stop and submit every visible team timer. **Stop Build** ends the round and reveals the results. When all visible teams have submitted, results are revealed automatically. Use **Next Build** to continue.
+5. The progression chart plots team times across all three builds. Click a team in the key to hide or show its line. Color and line patterns distinguish teams.
+
+## Results and reset
+
+- The round leaderboard supports paged and two-column compact layouts. Its Detail menu switches between seconds and milliseconds.
+- The progression summary shows the fastest teams for each build and the most improved team. From Session 2 onward, Whole Cohort Leaders ranks teams by time saved from Build 1 to Build 3 across completed sessions.
+- Choose **Export Session CSV** in the gear menu to download the selected session’s times in milliseconds, including best build and Build 1 to Build 3 improvement.
+- **Reset Workshop Session** clears only the selected session. Export first if you need to keep its results.
+
+## Where data is stored
+
+Workshop data is stored in the browser’s `localStorage` on the facilitator’s device. It is not shared or synchronized across different browsers or devices. Clearing browser storage or using a different browser profile starts with a fresh dashboard. Export CSV files regularly to keep a copy of session results.
