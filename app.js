@@ -13,7 +13,7 @@
   function logoPath(team){const n=team.match(/^Team (\d+)$/i)?.[1];return n?`${assetBase()}team-${n}.png`:''}
   function entries(round=state.round){return state.rounds[round-1]||[]}
   function has(team,round=state.round){return entries(round).find(e=>e.team===team)}
-  function saveEntry(team,ms){const list=entries().filter(e=>e.team!==team);list.push({team,ms:Math.max(0,Math.round(ms)),at:new Date().toISOString()});state.rounds[state.round-1]=list;delete state.running[team];delete state.drafts[team];if(state.activeTeam===team)state.activeTeam=null;if(state.teams.length&&list.length>=state.teams.length){state.revealed[state.round-1]=true;state.running={}}save();toast(`${team} time saved · ${fmt(ms,false)}`)}
+  function saveEntry(team,ms){const list=entries().filter(e=>e.team!==team);list.push({team,ms:Math.max(0,Math.round(ms)),at:new Date().toISOString()});state.rounds[state.round-1]=list;delete state.running[team];delete state.drafts[team];state.pausedAllTeams=state.pausedAllTeams.filter(t=>t!==team);if(state.activeTeam===team)state.activeTeam=null;if(state.teams.length&&list.length>=state.teams.length){state.revealed[state.round-1]=true;state.running={};state.pausedAllTeams=[]}save();toast(`${team} time saved · ${fmt(ms,false)}`)}
   function render(){
     $('sessionName').textContent=state.session||'Workshop session';$('roundTitle').innerHTML=`Build ${String(state.round).padStart(2,'0')} <span>/ 03</span>`;$('roundKicker').textContent=state.revealed[state.round-1]?'ROUND COMPLETE':'CURRENT CHALLENGE';
     document.querySelectorAll('.track-step').forEach((b,i)=>{b.classList.toggle('active',i+1===state.round);b.classList.toggle('complete',state.revealed[i]);});
