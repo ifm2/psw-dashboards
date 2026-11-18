@@ -47,3 +47,18 @@
 .track-step.active .step-number,.track-step.complete .step-number{box-shadow:0 4px 12px #14242e24}
 @media(max-width:760px){.build-track{min-height:102px}.track-line{top:31px;left:42px;right:42px}.step-number{width:62px;height:62px;font-size:22px}.track-step{font-size:12px;gap:10px}}
 @media(max-width:420px){.build-track{min-height:88px}.track-line{top:26px;left:34px;right:34px}.step-number{width:52px;height:52px;font-size:19px}.track-step{font-size:10px;gap:8px}}
+/* Compact icon actions sit beside the team mark to maximize logo space. */
+.team-card{min-height:190px}
+.team-running-visual{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:146px}
+.team-running-visual .team-logo{flex:1 1 auto;width:calc(100% - 54px);height:146px;min-width:0;margin:0;object-fit:contain}
+.team-actions{display:flex;flex:0 0 42px;flex-direction:column;align-items:center;justify-content:center;gap:9px}
+.team-icon-button{appearance:none;display:grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:7px;font:700 26px/1 var(--sans);cursor:pointer;transition:transform .12s,filter .12s}
+.team-icon-button:hover:not(:disabled){transform:scale(1.08);filter:brightness(.92)}
+.team-icon-button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.team-icon-button:disabled{opacity:.35;cursor:not-allowed}
+.stop-icon{color:#fff;background:#e52d29;border-radius:4px}
+.play-icon{color:#fff;background:#07895d;border-radius:50%}
+.edit-icon{color:#fff;background:#89949a;border-radius:50%;font-size:25px}
+.team-running-visual .team-actions .team-timer-button,.team-running-visual .team-actions .resume-time,.team-running-visual .team-actions .continue-time,.team-running-visual .team-actions .correct-time{width:38px;height:38px;margin:0;writing-mode:initial;letter-spacing:0;font-size:24px}
+.team-actions .correct-time{padding:0}
+.team-card .team-clock{align-self:center}
