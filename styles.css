@@ -62,3 +62,11 @@
 .team-running-visual .team-actions .team-timer-button,.team-running-visual .team-actions .resume-time,.team-running-visual .team-actions .continue-time,.team-running-visual .team-actions .correct-time{width:38px;height:38px;margin:0;writing-mode:initial;letter-spacing:0;font-size:24px}
 .team-actions .correct-time{padding:0}
 .team-card .team-clock{align-self:center}
+/* Plain glyph controls: keep each action visually distinct without badge backgrounds. */
+.team-actions{align-self:stretch;justify-content:space-around;gap:5px}
+.team-icon-button{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
+.team-icon-button:hover:not(:disabled){transform:scale(1.12);filter:none}
+.stop-icon{color:#ee2824!important;font-size:32px!important}
+.play-icon{color:#008b60!important;font-size:31px!important}
+.edit-icon{color:#9aa0a3!important;font-size:32px!important}
+.team-icon-button:disabled{opacity:.72}
